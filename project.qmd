@@ -41,9 +41,9 @@ team_data |>
     `Kill efficiency (%)` = kill_efficiency,
     Wins = wins,
     Losses = losses,
-    `Win percentage` = win_percentage
+    `Win percentage` = scales::percent(win_percentage, accuracy = 0.1)
   ) |>
-  knitr::kable(digits = 3)
+  knitr::kable()
 ```
 
 ```{r}
