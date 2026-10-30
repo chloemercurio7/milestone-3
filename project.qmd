@@ -7,47 +7,54 @@ execute:
   warning: false
 ---
 
-## A rough daily average
+## An illustrative scatter plot
 
 A local vacation-rental provider reports an estimate of **2.2 million visitors
-per year** to Siesta Key Beach. Dividing by 365 days gives an annualized
-average of about **6,027 visits per day**.
+per year** to Siesta Key Beach, but does not publish daily attendance counts.
+The plot below uses simulated visits: each dot represents one visit, and the
+annual total is randomly allocated across 2025 days, with weekend days given
+slightly higher weight. This weekend effect is an assumption for illustration,
+not observed beach data.
 
 ```{r}
 library(tidyverse)
 
-daily_estimate <- tibble(
-  estimate = "Annualized daily average",
-  annual_visitors = 2200000
-) |>
-  mutate(visitors_per_day = annual_visitors / 365)
+set.seed(2026)
 
-ggplot(daily_estimate, aes(x = estimate, y = visitors_per_day)) +
-  geom_col(fill = "#2D7FA3", width = 0.55) +
-  geom_text(
-    aes(label = scales::comma(round(visitors_per_day))),
-    vjust = -0.5,
-    size = 5
-  ) +
-  scale_y_continuous(
-    labels = scales::label_comma(),
-    limits = c(0, 7000),
-    expand = expansion(mult = c(0, 0.02))
-  ) +
+daily_weights <- tibble(
+  day = seq.Date(as.Date("2025-01-01"), by = "day", length.out = 365)
+) |>
+  mutate(
+    weekday = as.integer(format(day, "%u")),
+    weight = if_else(weekday >= 6, 1.25, 1)
+  )
+
+daily_visits <- as.vector(
+  rmultinom(n = 1, size = 2200000, prob = daily_weights$weight)
+)
+
+attendee_dots <- tibble(
+  day = rep(daily_weights$day, times = daily_visits),
+  visit_rank = sequence(daily_visits)
+)
+
+ggplot(attendee_dots, aes(x = day, y = visit_rank)) +
+  geom_point(color = "#2D7FA3", alpha = 0.35, size = 0.15) +
+  scale_x_date(date_breaks = "1 month", date_labels = "%b") +
+  scale_y_continuous(labels = scales::label_comma()) +
   labs(
-    title = "About 6,000 beach visits per day",
-    subtitle = "Annual estimate of 2.2 million visits divided by 365 days",
-    x = NULL,
-    y = "Estimated visits per day",
-    caption = "Source: Gulf Coast Vacation Rentals; this is an annualized estimate, not a daily head count."
+    title = "Simulated beach visits across the year",
+    subtitle = "Each dot represents one simulated visit; weekends are weighted 25% higher",
+    x = "Day in 2025",
+    y = "Visit number within each day",
+    caption = "Synthetic allocation of the 2.2 million annual estimate; daily values are not observed counts."
   ) +
   theme_minimal()
 ```
 
-This is a rough average, not a claim that the beach gets the same number of
-visitors every day. The published annual estimate does not describe its
-counting method, and actual attendance likely changes by season, weather, and
-day of the week.
+There are 2.2 million dots, so they overlap at this display size. The source
+does not identify unique people or describe its counting method; these dots
+represent modeled visits, not actual people or measured daily attendance.
 
 ## Source
 

@@ -1,0 +1,63 @@
+---
+title: "Estimated Daily Visitors to Siesta Key Beach"
+format: html
+execute:
+  echo: false
+  message: false
+  warning: false
+---
+
+## An illustrative scatter plot
+
+A local vacation-rental provider reports an estimate of **2.2 million visitors
+per year** to Siesta Key Beach, but does not publish daily attendance counts.
+The plot below uses simulated visits: each dot represents one visit, and the
+annual total is randomly allocated across 2025 days, with weekend days given
+slightly higher weight. This weekend effect is an assumption for illustration,
+not observed beach data.
+
+```{r}
+library(tidyverse)
+
+set.seed(2026)
+
+daily_weights <- tibble(
+  day = seq.Date(as.Date("2025-01-01"), by = "day", length.out = 365)
+) |>
+  mutate(
+    weekday = as.integer(format(day, "%u")),
+    weight = if_else(weekday >= 6, 1.25, 1)
+  )
+
+daily_visits <- as.vector(
+  rmultinom(n = 1, size = 2200000, prob = daily_weights$weight)
+)
+
+attendee_dots <- tibble(
+  day = rep(daily_weights$day, times = daily_visits),
+  visit_rank = sequence(daily_visits)
+)
+
+ggplot(attendee_dots, aes(x = day, y = visit_rank)) +
+  geom_point(color = "#2D7FA3", alpha = 0.35, size = 0.15) +
+  scale_x_date(date_breaks = "1 month", date_labels = "%b") +
+  scale_y_continuous(labels = scales::label_comma()) +
+  labs(
+    title = "Simulated beach visits across the year",
+    subtitle = "Each dot represents one simulated visit; weekends are weighted 25% higher",
+    x = "Day in 2025",
+    y = "Visit number within each day",
+    caption = "Synthetic allocation of the 2.2 million annual estimate; daily values are not observed counts."
+  ) +
+  theme_minimal()
+```
+
+There are 2.2 million dots, so they overlap at this display size. The source
+does not identify unique people or describe its counting method; these dots
+represent modeled visits, not actual people or measured daily attendance.
+
+## Source
+
+- [Gulf Coast Vacation Rentals: Siesta Key beach facts](https://www.gcvacationrentals.com/florida%C2%92s-top-rated-beach-siesta-key/) —
+  reports 2.2 million annual visitors.
+
