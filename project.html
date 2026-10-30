@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Attack Efficiency and Winning in LOVB</title>
+<title>Estimated Daily Visitors to Siesta Key Beach</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -52,8 +52,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Attack Efficiency and Winning in LOVB</h1>
-<p class="subtitle lead">An exploratory look at the 2025 season</p>
+<h1 class="title">Estimated Daily Visitors to Siesta Key Beach</h1>
 </div>
 
 
@@ -70,91 +69,25 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="project-question" class="level2">
-<h2 class="anchored" data-anchor-id="project-question">Project question</h2>
-<p>Does a women’s professional volleyball team’s attacking performance tend to move together with its match winning percentage? This page starts to explore that question using League One Volleyball (LOVB) teams from the 2025 season.</p>
-<p>The league’s team statistics page reports <strong>Kill Efficiency</strong>, rather than a measure explicitly named attack percentage. The plot uses Kill Efficiency as an attack-related measure and keeps the league’s label so the two statistics are not mistaken for one another.</p>
-</section>
-<section id="team-comparison" class="level2">
-<h2 class="anchored" data-anchor-id="team-comparison">2025 team comparison</h2>
-<p>The table below pairs each team’s league-reported Kill Efficiency with its winning percentage. Winning percentage is calculated as wins divided by total matches in the published 2025 schedule.</p>
-<div class="cell">
-<div class="cell-output-display">
-<table class="caption-top table table-sm table-striped small">
-<thead>
-<tr class="header">
-<th style="text-align: left;">Team</th>
-<th style="text-align: right;">Kill efficiency (%)</th>
-<th style="text-align: right;">Wins</th>
-<th style="text-align: right;">Losses</th>
-<th style="text-align: left;">Win percentage</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Atlanta</td>
-<td style="text-align: right;">25.7</td>
-<td style="text-align: right;">14</td>
-<td style="text-align: right;">5</td>
-<td style="text-align: left;">73.7%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Austin</td>
-<td style="text-align: right;">22.1</td>
-<td style="text-align: right;">10</td>
-<td style="text-align: right;">12</td>
-<td style="text-align: left;">45.5%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Houston</td>
-<td style="text-align: right;">22.4</td>
-<td style="text-align: right;">13</td>
-<td style="text-align: right;">7</td>
-<td style="text-align: left;">65.0%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Madison</td>
-<td style="text-align: right;">24.1</td>
-<td style="text-align: right;">8</td>
-<td style="text-align: right;">11</td>
-<td style="text-align: left;">42.1%</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Omaha</td>
-<td style="text-align: right;">22.3</td>
-<td style="text-align: right;">7</td>
-<td style="text-align: right;">14</td>
-<td style="text-align: left;">33.3%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Salt Lake</td>
-<td style="text-align: right;">23.8</td>
-<td style="text-align: right;">8</td>
-<td style="text-align: right;">11</td>
-<td style="text-align: left;">42.1%</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
+<section id="a-rough-daily-average" class="level2">
+<h2 class="anchored" data-anchor-id="a-rough-daily-average">A rough daily average</h2>
+<p>A local vacation-rental provider reports an estimate of <strong>2.2 million visitors per year</strong> to Siesta Key Beach. Dividing by 365 days gives an annualized average of about <strong>6,027 visits per day</strong>.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="project_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="project_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>Across these six teams, the exploratory Pearson correlation is 0.5. This small, team-level comparison is descriptive: it does not show that attacking efficiency causes teams to win.</p>
+<p>This is a rough average, not a claim that the beach gets the same number of visitors every day. The published annual estimate does not describe its counting method, and actual attendance likely changes by season, weather, and day of the week.</p>
 </section>
-<section id="data-sources-and-limitations" class="level2">
-<h2 class="anchored" data-anchor-id="data-sources-and-limitations">Data sources and limitations</h2>
+<section id="source" class="level2">
+<h2 class="anchored" data-anchor-id="source">Source</h2>
 <ul>
-<li><a href="https://www.lovb.com/2025/league-statistics">LOVB 2025 team statistics</a> — season totals, including the league’s Kill Efficiency measure.</li>
-<li><a href="https://www.lovb.com/2025/schedule">LOVB 2025 schedule</a> — published match results used to count each team’s wins and losses.</li>
+<li><a href="https://www.gcvacationrentals.com/florida%C2%92s-top-rated-beach-siesta-key/">Gulf Coast Vacation Rentals: Siesta Key beach facts</a> — reports 2.2 million annual visitors.</li>
 </ul>
-<p>The teams did not all play the same number of matches, so winning percentage uses each team’s own number of matches. A next step is to confirm whether match-level attack attempts and errors are available to calculate a conventional attack percentage directly.</p>
 </section>
 
 </main>
