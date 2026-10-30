@@ -2,6 +2,10 @@
 title: "Attack Efficiency and Winning in LOVB"
 subtitle: "An exploratory look at the 2025 season"
 format: html
+execute:
+  echo: false
+  message: false
+  warning: false
 ---
 
 ## Project question
